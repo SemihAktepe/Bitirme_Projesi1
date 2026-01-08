@@ -1,9 +1,4 @@
-"""
-W-DENet Merkezi Veritabanı Yönetimi
-===================================
-SQLite veritabanı ile tüm işlemleri yöneten singleton sınıf.
-Bitirme Projesi Kod Standartlarına uygun olarak düzenlenmiştir.
-"""
+
 
 import sqlite3
 import os
@@ -56,13 +51,13 @@ class DatabaseManager:
     def _ensure_database_exists(self):
         """Veritabanı yoksa oluştur."""
         if not self.db_path.exists():
-            print(f"📦 Veritabanı bulunamadı, oluşturuluyor: {self.db_path}")
+            print(f" Veritabanı bulunamadı, oluşturuluyor: {self.db_path}")
             try:
                 from create_database_sqlite import create_database
                 create_database(str(self.db_path))
-                print("✅ Veritabanı başarıyla oluşturuldu!")
+                print(" Veritabanı başarıyla oluşturuldu!")
             except ImportError:
-                print("❌ HATA: 'create_database_sqlite.py' bulunamadı.")
+                print(" HATA: 'create_database_sqlite.py' bulunamadı.")
 
     def connect(self) -> sqlite3.Connection:
         """Veritabanına bağlanır."""
@@ -187,7 +182,7 @@ class DatabaseManager:
             return result['NoiseTypeID']
         
         # Bulunamazsa varsayılan olarak 1 (Gaussien) döndür
-        print(f"⚠️ Uyarı: Gürültü tipi '{noise_name}' bulunamadı, varsayılan kullanılıyor.")
+        print(f" Uyarı: Gürültü tipi '{noise_name}' bulunamadı, varsayılan kullanılıyor.")
         return 1
 
     def insert_noise_config(self, noise_type_id: int, config_dict: Dict) -> int:
@@ -350,5 +345,5 @@ class DatabaseManager:
 db = DatabaseManager()
 
 if __name__ == "__main__":
-    print(f"💾 Database Path: {db.db_path}")
-    print(f"📊 Mevcut Deney Sayısı: {db.get_experiment_count()}")
+    print(f" Database Path: {db.db_path}")
+    print(f" Mevcut Deney Sayısı: {db.get_experiment_count()}")
