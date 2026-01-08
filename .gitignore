@@ -1,0 +1,6 @@
+﻿__pycache__/
+*.pyc
+datasets/
+*.db
+.vscode/
+.idea/
