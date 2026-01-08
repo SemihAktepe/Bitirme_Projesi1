@@ -170,9 +170,9 @@ class GTX1650Bot:
         print(f"⏱️  Tahmini süre: ~{total_experiments * 1.6 / 3600:.1f} saat (1.6s/deney, GTX 1650)")
 
         # Kullanıcı onayı
-        response = input("\n▶️  Başlatmak istiyor musunuz? (e/h): ").strip().lower()
+        response = input("\n  Başlatmak istiyor musunuz? (e/h): ").strip().lower()
         if response != 'e':
-            print("❌ İptal edildi.")
+            print(" İptal edildi.")
             return
 
         # Deneyleri çalıştır
@@ -196,32 +196,24 @@ class GTX1650Bot:
 
         # Rapor
         print("\n" + "="*70)
-        print("📊 DENEY RAPORU")
+        print(" DENEY RAPORU")
         print("="*70)
-        print(f"✅ Başarılı: {self.stats['successful']}")
-        print(f"❌ Başarısız: {self.stats['failed']}")
-        print(f"📈 Toplam: {self.stats['total_experiments']}")
-        print(f"⏱️  Süre: {total_time/3600:.2f} saat")
-        print(f"⚡ Ortalama: {total_time/max(self.stats['total_experiments'], 1):.3f} s/deney")
-        print(f"💾 Veritabanı: wdenet_database.db")
+        print(f" Başarılı: {self.stats['successful']}")
+        print(f" Başarısız: {self.stats['failed']}")
+        print(f" Toplam: {self.stats['total_experiments']}")
+        print(f"  Süre: {total_time/3600:.2f} saat")
+        print(f" Ortalama: {total_time/max(self.stats['total_experiments'], 1):.3f} s/deney")
+        print(f" Veritabanı: wdenet_database.db")
         print("="*70)
 
 
 def main():
-    print("""
-    ╔═══════════════════════════════════════════════════════════════════╗
-    ║            GTX 1650 Deney Botu (Excalibur G770)                   ║
-    ║                                                                   ║
-    ║  Görev: 6 görüntü × 30 noise × 8 filter = 1,440 deney           ║
-    ║  Tahmini süre: ~0.6 saat (1.6s/deney, GTX 1650 hızı)            ║
-    ╚═══════════════════════════════════════════════════════════════════╝
-    """)
 
     bot = GTX1650Bot()
     bot.run_all_experiments()
 
-    print("\n✅ GTX 1650 görevi tamamlandı!")
-    print("📦 DB dosyasını G770'de saklayın ve merge için hazır tutun!")
+    print("\n GTX 1650 görevi tamamlandı!")
+    print(" DB dosyasını G770'de saklayın ve merge için hazır tutun!")
 
 
 if __name__ == "__main__":
