@@ -1,12 +1,4 @@
-"""
-W-DENet SQLite Veritabani Kurulum Modulu
-========================================
-Bu modul, wdenet_db.sql dosyasinda belirtilen SQL Server semasini
-SQLite formatina birebir donusturerek olusturur.
 
-Standartlar: Bitirme Projesi Kod Standartlari'na uygundur.
-DUZELTME: KernelSize kısıtlaması bot deneyleri (20x20, 50x50) için gevşetildi.
-"""
 
 import sqlite3
 import os
@@ -37,7 +29,7 @@ def create_database(db_path='wdenet_database.db'):
     cursor = conn.cursor()
 
     print(f"\n{'='*70}")
-    print("🚀 W-DENet Database Schema Creation (Fixed Constraints)")
+    print(" W-DENet Database Schema Creation (Fixed Constraints)")
     print(f"{'='*70}\n")
 
     # Foreign key destegini aktif et
@@ -46,7 +38,7 @@ def create_database(db_path='wdenet_database.db'):
     # =========================================================================
     # TABLO: Images
     # =========================================================================
-    print("📸 Creating Images table...")
+    print(" Creating Images table...")
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS Images (
             ImageID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -89,7 +81,7 @@ def create_database(db_path='wdenet_database.db'):
     # =========================================================================
     # TABLO: NoiseConfigs
     # =========================================================================
-    print("⚙️  Creating NoiseConfigs table...")
+    print("  Creating NoiseConfigs table...")
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS NoiseConfigs (
             NoiseConfigID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -113,7 +105,7 @@ def create_database(db_path='wdenet_database.db'):
     # =========================================================================
     # TABLO: FilterTypes
     # =========================================================================
-    print("🔧 Creating FilterTypes table...")
+    print(" Creating FilterTypes table...")
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS FilterTypes (
             FilterTypeID INTEGER PRIMARY KEY,
@@ -130,7 +122,7 @@ def create_database(db_path='wdenet_database.db'):
     # TABLO: FilterConfigs
     # DUZELTME BURADA YAPILDI: KernelSize IN (3,5,7,9) yerine KernelSize > 0
     # =========================================================================
-    print("🛠️  Creating FilterConfigs table...")
+    print("  Creating FilterConfigs table...")
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS FilterConfigs (
             FilterConfigID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -162,7 +154,7 @@ def create_database(db_path='wdenet_database.db'):
     # =========================================================================
     # TABLO: Experiments
     # =========================================================================
-    print("🔬 Creating Experiments table...")
+    print(" Creating Experiments table...")
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS Experiments (
             ExperimentID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -188,7 +180,7 @@ def create_database(db_path='wdenet_database.db'):
     # =========================================================================
     # TABLO: Results
     # =========================================================================
-    print("📊 Creating Results table...")
+    print(" Creating Results table...")
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS Results (
             ResultID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -216,7 +208,7 @@ def create_database(db_path='wdenet_database.db'):
     # =========================================================================
     # TABLOLAR: ComparisonSets & ComparisonSetExperiments
     # =========================================================================
-    print("📦 Creating Comparison tables...")
+    print(" Creating Comparison tables...")
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS ComparisonSets (
             ComparisonSetID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -241,7 +233,7 @@ def create_database(db_path='wdenet_database.db'):
     # =========================================================================
     # INDEXLER
     # =========================================================================
-    print("🚀 Creating indexes...")
+    print(" Creating indexes...")
     cursor.execute("CREATE INDEX IF NOT EXISTS IX_Images_FileName ON Images(FileName);")
     cursor.execute("CREATE INDEX IF NOT EXISTS IX_Images_FileFormat ON Images(FileFormat);")
     cursor.execute("CREATE INDEX IF NOT EXISTS IX_NoiseConfigs_NoiseTypeID ON NoiseConfigs(NoiseTypeID);")
@@ -255,7 +247,7 @@ def create_database(db_path='wdenet_database.db'):
     # =========================================================================
     # VIEW: vw_CompleteResults
     # =========================================================================
-    print("📋 Creating vw_CompleteResults view...")
+    print(" Creating vw_CompleteResults view...")
     cursor.execute("""
         CREATE VIEW IF NOT EXISTS vw_CompleteResults AS
         SELECT
@@ -303,7 +295,7 @@ def create_database(db_path='wdenet_database.db'):
     # =========================================================================
     # VIEW: vw_ProcessingPerformance
     # =========================================================================
-    print("⚡ Creating vw_ProcessingPerformance view...")
+    print(" Creating vw_ProcessingPerformance view...")
     cursor.execute("""
         CREATE VIEW IF NOT EXISTS vw_ProcessingPerformance AS
         SELECT
@@ -332,7 +324,7 @@ def create_database(db_path='wdenet_database.db'):
     # =========================================================================
     # VIEW: vw_BestResultsByFilter
     # =========================================================================
-    print("🏆 Creating vw_BestResultsByFilter view...")
+    print(" Creating vw_BestResultsByFilter view...")
     cursor.execute("""
         CREATE VIEW IF NOT EXISTS vw_BestResultsByFilter AS
         SELECT
@@ -359,7 +351,7 @@ def create_database(db_path='wdenet_database.db'):
     # =========================================================================
     # VIEW: vw_ImageSizeDistribution
     # =========================================================================
-    print("📏 Creating vw_ImageSizeDistribution view...")
+    print(" Creating vw_ImageSizeDistribution view...")
     cursor.execute("""
         CREATE VIEW IF NOT EXISTS vw_ImageSizeDistribution AS
         SELECT
@@ -384,7 +376,7 @@ def create_database(db_path='wdenet_database.db'):
     # =========================================================================
     # SEED DATA
     # =========================================================================
-    print("🌱 Inserting seed data...")
+    print(" Inserting seed data...")
 
     noise_types = [
         (1, 'gaussien', 'Gaussian Noise', 'Statistical noise', 'Statistical', 1),
@@ -418,9 +410,9 @@ def create_database(db_path='wdenet_database.db'):
     conn.close()
 
     print("\n" + "="*70)
-    print("🎉 DATABASE CREATED SUCCESSFULLY (KERNEL SIZE FIX APPLIED)!")
+    print(" DATABASE CREATED SUCCESSFULLY (KERNEL SIZE FIX APPLIED)!")
     print("="*70)
-    print(f"📁 Database: {os.path.abspath(db_path)}")
+    print(f" Database: {os.path.abspath(db_path)}")
     return db_path
 
 if __name__ == "__main__":
